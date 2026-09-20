@@ -1,0 +1,11 @@
+# Verified working together on Python 3.12.3, CPU-only, Linux.
+# These are the versions actually installed and tested while building this project.
+fastapi==0.141.1
+uvicorn[standard]==0.53.0
+python-multipart==0.0.32
+numpy==2.4.4
+opencv-python-headless==4.13.0.92
+onnxruntime==1.24.4
+insightface==2.0
+scikit-learn==1.8.0
+Pillow==12.1.1

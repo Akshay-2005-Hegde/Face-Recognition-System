@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aperture-Vision Control</title>
+<link rel="icon" href="data:,">
+<link rel="icon" type="image/png" href="./face.jpg"
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12 2.1 7.1"/><path d="M12 12l9.9 4.9"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-title">APERTURE</div>
+        <div class="brand-subtitle">VISION CONTROL</div>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="nav-menu">
+        <button class="nav-item active" data-view="dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+          Command center
+        </button>
+        <button class="nav-item" data-view="identify">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h5v5m-5 11h5v-5M4 9V4h5M4 15v5h5"/><circle cx="12" cy="12" r="3"/></svg>
+          Recognize
+        </button>
+        <button class="nav-item" data-view="enroll">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          Enroll identity
+        </button>
+        <button class="nav-item" data-view="people">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          People directory
+        </button>
+        <button class="nav-item" data-view="evaluation">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Evaluation lab
+        </button>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="system-status">
+        <div class="status-header">
+          <span>SYSTEM STATUS</span>
+          <div class="status-dot green"></div>
+        </div>
+        <div class="status-row"><span>Backend</span><span class="status-val green">ONLINE</span></div>
+        <div class="status-row"><span>Database</span><span class="status-val yellow">POLLING</span></div>
+        <div class="status-row"><span>Model</span><span class="status-val yellow">READY</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    
+    <header class="top-bar">
+      <div class="breadcrumbs">/ AUTHORIZED WORKSPACE · LOCAL INFERENCE</div>
+      <div class="top-bar-actions">
+        <button id="privacy-link" class="badge-btn"><div class="status-dot green"></div> AUTHORIZED USE</button>
+      </div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section class="view" id="view-dashboard">
+      
+      <div class="hero-card">
+        <div class="hero-eyebrow">APERTURE / CONTROL PLANE</div>
+        <h1 class="hero-title">See the signal.<br><span class="text-gradient">Know the face.</span></h1>
+        <p class="hero-subtitle">A local-first recognition workspace for authorized identity checks, explainable similarity decisions, and accountable evaluation.</p>
+        
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.querySelector('[data-view=\'identify\']').click()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h5v5m-5 11h5v-5M4 9V4h5M4 15v5h5"/><circle cx="12" cy="12" r="3"/></svg>
+            Start recognition
+          </button>
+          <button class="btn-secondary" onclick="document.querySelector('[data-view=\'enroll\']').click()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            Enroll identity
+          </button>
+        </div>
+
+        <div class="hero-specs">
+          <div class="spec-box">
+            <span class="spec-label">DECISION RULE</span>
+            <span class="spec-val">cos(q, e) ≥ <span data-stat="match_threshold">--</span></span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-label">EMBEDDING</span>
+            <span class="spec-val text-accent">L2 normalized</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="mc-icon blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="mc-value" data-stat="total_people">0</div>
+          <div class="mc-title">Enrolled people</div>
+          <div class="mc-subtitle">ACTIVE IDENTITIES</div>
+        </div>
+        <div class="metric-card">
+          <div class="mc-icon purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h5v5m-5 11h5v-5M4 9V4h5M4 15v5h5"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <div class="mc-value" data-stat="total_attempts">0</div>
+          <div class="mc-title">Recognition attempts</div>
+          <div class="mc-subtitle">ALL PROCESSED SCANS</div>
+        </div>
+        <div class="metric-card">
+          <div class="mc-icon green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="mc-value text-green" data-stat="known_matches">0</div>
+          <div class="mc-title">Successful matches</div>
+          <div class="mc-subtitle">CLEARED THRESHOLD</div>
+        </div>
+        <div class="metric-card">
+          <div class="mc-icon red"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div class="mc-value text-red" data-stat="unknown_detections">0</div>
+          <div class="mc-title">Unknown faces</div>
+          <div class="mc-subtitle">REJECTED BY THRESHOLD</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IDENTIFY -->
+    <section class="view hidden" id="view-identify">
+      <div class="view-header">
+        <div class="breadcrumbs">INFERENCE CONSOLE / LIVE SCAN</div>
+        <h2>Recognize a face</h2>
+        <p>Upload a single image or capture an explicit camera frame. Every detected face is matched independently and can be rejected as UNKNOWN.</p>
+      </div>
+
+      <div class="split-layout">
+        <!-- Left: Input -->
+        <div class="panel">
+          <div class="panel-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h5v5m-5 11h5v-5M4 9V4h5M4 15v5h5"/><circle cx="12" cy="12" r="3"/></svg>
+            <h3>Input signal</h3>
+          </div>
+          <div class="panel-body">
+            
+            <div class="identify-source-tabs hidden">
+              <button class="tab active" data-source="upload">Upload</button>
+              <button class="tab" data-source="camera">Camera</button>
+            </div>
+
+            <div id="identify-upload-panel">
+              <div class="dropzone" id="identify-dropzone">
+                <input type="file" id="identify-file" accept="image/*" hidden>
+                <div class="dz-content">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <h4>Drop an image or click to browse</h4>
+                  <p>MULTI-FACE · JPG / PNG / WEBP</p>
+                  <button type="button" class="btn-secondary mt-sm" id="identify-browse">Select Image</button>
+                </div>
+              </div>
+              <div class="divider"><span>OR</span></div>
+              <button class="btn-secondary w-full" onclick="document.querySelector('#view-identify .tab[data-source=\'camera\']').click()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                Use camera
+              </button>
+            </div>
+
+            <div id="identify-camera-panel" class="hidden">
+              <video id="webcam-video" autoplay playsinline></video>
+              <div class="camera-actions">
+                <button class="btn-secondary" onclick="document.querySelector('#view-identify .tab[data-source=\'upload\']').click()">Back</button>
+                <button class="btn-primary flex-1" id="webcam-capture">Capture frame</button>
+              </div>
+            </div>
+
+            <div class="canvas-wrap hidden" id="identify-canvas-wrap">
+              <canvas id="identify-canvas"></canvas>
+              <button class="btn-secondary w-full mt-lg" id="identify-reset">Clear & Try another</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Output -->
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Decision output</h3>
+          </div>
+          <div class="panel-body">
+            <div id="identify-results" class="empty-state">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mb-sm opacity-50"><path d="M14.5 4h5v5m-5 11h5v-5M4 9V4h5M4 15v5h5"/><circle cx="12" cy="12" r="3"/></svg>
+              <h4>Awaiting an input signal</h4>
+              <p>Your decision output will appear here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENROLL -->
+    <section class="view hidden" id="view-enroll">
+      <div class="view-header">
+        <div class="breadcrumbs">DATABASE / IDENTITY MANAGEMENT</div>
+        <h2>Enroll identity</h2>
+        <p>Add individual faces or automatically process a large dataset folder. High quality, well-lit variations improve recognition robustness.</p>
+      </div>
+
+      <div class="panel max-w-3xl">
+        <div class="tabs-ui">
+          <button class="tab-ui active" data-source="upload">Manual Upload</button>
+          <button class="tab-ui" data-source="camera">Webcam Capture</button>
+          <button class="tab-ui" data-source="bulk">Smart Bulk Folder</button>
+        </div>
+
+        <!-- Hidden logic tabs -->
+        <div class="identify-source-tabs hidden">
+          <button class="tab active" data-source="upload">Upload</button>
+          <button class="tab" data-source="camera">Camera</button>
+          <button class="tab" data-source="bulk">Bulk</button>
+        </div>
+
+        <div id="enroll-manual-wrapper">
+          <div class="input-group mb-lg">
+            <label>Full Name <span class="text-red">*</span></label>
+            <input id="enroll-name" type="text" placeholder="e.g. Priya Sharma" autocomplete="off">
+          </div>
+
+          <div id="enroll-upload-panel">
+            <div class="dropzone" id="enroll-dropzone">
+              <input type="file" id="enroll-files" accept="image/*" multiple hidden>
+              <div class="dz-content">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+                <h4>Drop face images or browse</h4>
+                <p>Up to 10 images · Clear frontal faces preferred</p>
+                <button type="button" class="btn-secondary mt-sm" id="enroll-browse">Select Files</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="enroll-camera-panel" class="hidden">
+            <video id="enroll-webcam-video" autoplay playsinline></video>
+            <button class="btn-secondary w-full mt-sm" id="enroll-webcam-capture">Capture frame</button>
+            <p class="text-muted text-sm text-center mt-xs">Capture multiple angles and lighting conditions (up to 10).</p>
+          </div>
+
+          <div class="thumb-row" id="enroll-preview"></div>
+          
+          <div class="actions-footer mt-lg border-t pt-lg">
+            <button class="btn-primary" id="enroll-submit" disabled>Commit Identity to Database</button>
+          </div>
+        </div>
+
+        <div id="enroll-bulk-wrapper" class="hidden">
+          <div class="dropzone" id="enroll-bulk-dropzone">
+            <input type="file" id="enroll-bulk-dir" webkitdirectory directory multiple hidden>
+            <div class="dz-content">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              <h4>Select a structured root folder</h4>
+              <p>Folder names become identity names (e.g., <code>dataset/John_Doe/img.jpg</code>)</p>
+              <button type="button" class="btn-secondary mt-sm" id="enroll-bulk-browse">Browse Directory</button>
+            </div>
+          </div>
+          
+          <div id="bulk-summary" class="hidden mt-lg">
+            <p id="bulk-summary-text" class="text-sm mb-sm"></p>
+            <div class="progress-track mb-sm"><div class="progress-fill" id="bulk-progress-fill" style="width:0%"></div></div>
+            <button class="btn-primary" id="bulk-enroll-start">Start Automated Pipeline</button>
+            <div id="bulk-log" class="console-log mt-sm"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel max-w-3xl mt-lg hidden" id="enroll-results">
+        <h3 class="mb-sm">Transaction Result</h3>
+        <div id="enroll-results-body"></div>
+      </div>
+    </section>
+
+    <!-- PEOPLE -->
+    <section class="view hidden" id="view-people">
+      <div class="view-header">
+        <div class="breadcrumbs">DATABASE / INDEX</div>
+        <h2>People directory</h2>
+        <p>Active biometric profiles available for local inference matching.</p>
+      </div>
+      <div id="people-list" class="people-grid empty-state">
+        <div class="empty-state-content">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mb-sm opacity-50"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h4>Directory is empty</h4>
+          <p>No identities enrolled. Go to "Enroll identity" to populate the database.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVALUATION -->
+    <section class="view hidden" id="view-evaluation">
+      <div class="view-header">
+        <div class="breadcrumbs">CONTROL PLANE / METRICS</div>
+        <h2>Evaluation lab</h2>
+        <p>Live analysis of the vector database to compute False Accept/Reject rates and deduce optimal separation thresholds.</p>
+      </div>
+      
+      <!-- Charts -->
+      <div class="charts-grid mb-lg" id="eval-charts-container" style="display: none;">
+          <div class="panel">
+             <h3 class="mb-sm">Error Rates Curve (FAR/FRR)</h3>
+             <canvas id="evalChart" style="max-height: 220px;"></canvas>
+          </div>
+          <div class="panel">
+             <h3 class="mb-sm">Similarity Distribution</h3>
+             <canvas id="distChart" style="max-height: 220px;"></canvas>
+          </div>
+      </div>
+
+      <!-- Metrics -->
+      <div class="panel mb-lg" id="evaluation-body">
+        <div class="empty-state-content">
+          <span class="spinner mb-sm"></span>
+          <p>Loading telemetry...</p>
+        </div>
+      </div>
+
+      <div class="split-layout">
+        <!-- Run Eval -->
+        <div class="panel">
+          <div class="panel-header"><h3>Trigger Analysis Pipeline</h3></div>
+          <div class="panel-body">
+            <p class="text-sm text-muted mb-lg">Analyzes your live database. Optionally merge an external dataset to stress-test your embeddings.</p>
+            <div class="input-group mb-sm">
+              <input id="eval-dataset-path" type="text" placeholder="External path (Optional)">
+            </div>
+            <button class="btn-primary w-full" id="run-eval-btn">Execute Evaluation</button>
+            <div id="run-eval-log" class="console-log mt-sm hidden"></div>
+          </div>
+        </div>
+
+        <!-- Adjust Threshold -->
+        <div class="panel">
+          <div class="panel-header"><h3>Operating Threshold</h3></div>
+          <div class="panel-body">
+            <p class="text-sm text-muted mb-lg">Manually adjust the strictness of the inference engine. Lower values accept more faces (higher FAR), higher values reject more (higher FRR).</p>
+            <div class="input-group mb-sm">
+              <input id="eval-threshold-input" type="number" step="0.01" min="-1" max="1" value="0.38" class="font-mono text-lg">
+            </div>
+            <button class="btn-secondary w-full" id="eval-threshold-submit">Update Configuration</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div id="toast-container"></div>
+
+<div class="modal hidden" id="privacy-modal">
+  <div class="panel max-w-lg relative">
+    <button class="close-modal" id="privacy-close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h3 class="mb-sm">Privacy & Security Notice</h3>
+    <ul class="text-sm text-muted space-y-2 pl-4">
+      <li><strong>Local Processing:</strong> All detection and embedding generation occurs strictly on this machine. No data is transmitted to external cloud APIs.</li>
+      <li><strong>Data Minimization:</strong> Raw images are discarded immediately after feature extraction. Only 112x112 thumbnails and mathematical vectors are retained.</li>
+      <li><strong>Consent:</strong> Operators are responsible for securing consent prior to biometric enrollment.</li>
+      <li><strong>Right to Erasure:</strong> Deleting an identity from the People directory immediately purges all associated vector and thumbnail data from the SQLite index.</li>
+    </ul>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

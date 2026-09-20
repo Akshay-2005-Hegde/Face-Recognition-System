@@ -1,0 +1,10 @@
+{
+  "generated_at": 1789895859.3560834,
+  "n_genuine": 1,
+  "n_impostor": 0,
+  "identities_enrolled": [
+    "akshay"
+  ],
+  "status": "insufficient_data",
+  "message": "Not enough data for full evaluation. To evaluate, you need at least two people enrolled, and at least one person needs multiple images."
+}
