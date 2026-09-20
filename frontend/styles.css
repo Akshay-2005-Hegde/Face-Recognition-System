@@ -323,3 +323,70 @@ input:focus { border-color: var(--accent); }
 
 .spinner { width: 18px; height: 18px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; vertical-align: middle; }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+@media screen and (max-width: 768px) {
+    /* Stack grid layouts vertically */
+    .dashboard, 
+    .grid-container, 
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Constrain the webcam/video feed to the screen width */
+    video, 
+    canvas, 
+    #webcam-container, 
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        border-radius: 8px;
+    }
+
+    /* Make buttons full-width and easier to tap */
+    button, 
+    .btn {
+        width: 100%;
+        padding: 16px;
+        margin: 8px 0;
+        font-size: 16px; /* Prevents iOS auto-zoom on inputs */
+    }
+
+    /* Adjust inputs and file pickers */
+    input[type="file"], 
+    input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    /* Wrap navigation tabs */
+    .tabs, 
+    .nav-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .tabs button {
+        flex: 1 1 45%; /* Tabs take up half the screen width each */
+        padding: 12px 5px;
+        font-size: 14px;
+    }
+
+    /* Shrink large headers slightly */
+    h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    /* Make charts fit the screen */
+    #chart-container, 
+    canvas#evalChart {
+        width: 100% !important;
+        max-height: 300px;
+    }
+}
